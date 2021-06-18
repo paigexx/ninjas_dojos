@@ -1,0 +1,11 @@
+h1{
+    color: lightskyblue;
+}
+
+.container{
+    width: 60%;
+    margin: 4em auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
