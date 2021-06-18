@@ -25,10 +25,33 @@ class Dojo:
 
     @classmethod
     def get_dojo(cls, data):
-        query = "SELECT ninjas.id AS ninja_id, first_name, last_name, age, ninjas.created_at AS ninja_created_at, ninjas.updated_at AS ninja_updated_at, dojos.id AS dojo_id, name, dojos.created_at AS dojo_created_at, dojos.updated_at AS dojo_updated_at FROM ninjas LEFT JOIN dojos ON ninjas.dojo_id = %(dojo_id)s WHERE dojos.id = %(dojo_id)s;"
+        query = "SELECT * FROM dojos LEFT JOIN ninjas ON ninjas.dojo_id = %(dojo_id)s WHERE dojos.id = %(dojo_id)s;"
         results  = connectToMySQL("ninjas_dojos").query_db(query, data)
         print(results)
+        # this gets the result of the query out  of a list and into a dictionary 
+        dojo = cls(results[0])
+        # you can print the dojos name here 
+        # print(dojo.name)
+        
 
+        for row in results:
+            ninja_data = {
+                "id": row["ninjas.id"], 
+                "first_name": row["first_name"],
+                "last_name": row["last_name"],
+                "age":row["age"],
+                "dojo_id":row["dojo_id"],
+                "created_at": row["ninjas.created_at"],
+                "updated_at": row["ninjas.updated_at"]
+            }
+            # why do we create another dictionary -- clarify this with ryan
+
+            dojo.ninjas.append(ninja.Ninja(ninja_data))
+            print(dojo.ninjas)
+        
+        return dojo
+
+        
 
 
     # need to appy the  ninjas  into the list as an instance

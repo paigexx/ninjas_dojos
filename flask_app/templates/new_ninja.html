@@ -9,6 +9,23 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    <h1>Create a ninja</h1>
+    <form action="/dojos/create_ninja" method="POST">
+        <!-- pass along the foreign key in the form -->
+        <select name="dojo_id">
+            {% for dojo in dojos %}
+                <option value="{{dojo.id}}">{{dojo.name}}</option>
+            {% endfor %}
+        </select>
+        <label for="first_name">First Name: </label>
+        <input type="text" name="first_name">
+        <label for="last_name">Last Name: </label>
+        <input type="text" name="last_name">
+        <label for="age">Age: </label>
+        <input type="text" name="age">
+        <input type="submit" value="Create ninja">
+        <a href="/dojos">Home</a>
+    </form>
     
 </body>
 </html>
