@@ -30,8 +30,9 @@ class Dojo:
         print(results)
         # this gets the result of the query out  of a list and into a dictionary 
         dojo = cls(results[0])
+        print(dojo)
         # you can print the dojos name here 
-        # print(dojo.name)
+        print(dojo.name)
         
 
         for row in results:
@@ -44,7 +45,7 @@ class Dojo:
                 "created_at": row["ninjas.created_at"],
                 "updated_at": row["ninjas.updated_at"]
             }
-            # why do we create another dictionary -- clarify this with ryan
+            
 
             dojo.ninjas.append(ninja.Ninja(ninja_data))
             print(dojo.ninjas)

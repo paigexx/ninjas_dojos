@@ -41,8 +41,9 @@ def add_ninja():
 @app.route("/dojos/create_ninja", methods=['POST'])
 def new_ninja():
     print(request.form)
-    # pass the whole request.form over to the class method. a data dictionary will not work for the key ??
+    dojo_id = request.form["dojo_id"]
+    # pass the whole request.form over to the class method
     Ninja.create_ninja(request.form)
-    return redirect("/")
+    return redirect(f"/dojos/{dojo_id}")
 
 
